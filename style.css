@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.results {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.compra, .venta {
+    flex: 1;
+}
+
+.compra h2, .venta h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.compra p, .venta p {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.imagen-item {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    transition: transform 0.5s ease;
+}
+
+.imagen-item:hover {
+    transform: scale(1.05);
+}
+
+.imagen-container {
+    width: 230px;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.imagen-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all .2s ease-in-out;
+}
+
+#imagen-moneda-actual {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#imagen-moneda-nueva {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.imagen-item.cambio #imagen-moneda-actual {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.imagen-item.cambio #imagen-moneda-nueva {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.datos-item {
+    text-align: left;
+}
+
+.datos-item p {
+    margin: 5px 0;
+}
