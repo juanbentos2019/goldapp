@@ -11,6 +11,8 @@ const pesoOroElement = document.getElementById('peso-oro');
 const pesoBrutoElement = document.getElementById('peso-bruto');
 const pesoOnzasElement = document.getElementById('peso-onzas');
 
+const API_URL = 'https://data-asg.goldprice.org/dbXRates/USD';
+
 const itemsData = {
     alemania_10_marcos: {
         imagen: 'ruta/a/10marcos.png',
@@ -265,7 +267,39 @@ function actualizarImagen() {
     pesoOroElement.textContent = itemData.pesoOro;
     pesoBrutoElement.textContent = itemData.pesoBruto;
     
-    // Calculate and display weight in ounces
+    const pesoOroGramos = parseFloat(itemData.pesoOro.split(' ')[0]);
+    const pesoOroOnzas = (pesoOroGramos / 31.1035).toFixed(4);
+    pesoOnzasElement.textContent = `${pesoOroOnzas} oz`;
+
+    imagenItem.classList.add('cambio');
+
+    setTimeout(() => {
+        imagenMonedaActual.src = itemData.imagen;
+        imagenItem.classList.remove('cambio');
+    }, 0);
+}
+
+function ocultarImagenYDatos() {
+    imagenItem.style.display = 'none';
+    pesoOroElement.textContent = '';
+    pesoBrutoElement.textContent = '';
+    pesoOnzasElement.textContent = '';
+}
+
+function actualizarImagen() {
+    const item = itemSelect.value;
+    if (item === "") {
+        ocultarImagenYDatos();
+        return;
+    }
+
+    const itemData = itemsData[item];
+
+    imagenItem.style.display = 'flex';
+    imagenMonedaNueva.src = itemData.imagen;
+    pesoOroElement.textContent = itemData.pesoOro;
+    pesoBrutoElement.textContent = itemData.pesoBruto;
+    
     const pesoOroGramos = parseFloat(itemData.pesoOro.split(' ')[0]);
     const pesoOroOnzas = (pesoOroGramos / 31.1035).toFixed(4);
     pesoOnzasElement.textContent = `${pesoOroOnzas} oz`;
@@ -300,28 +334,88 @@ function calcular() {
     valorVentaElement.textContent = valorVenta.toFixed(2);
 }
 
-itemSelect.addEventListener('change', () => {
-    actualizarImagen();
-    calcular();
-});
+// Actualiza la función obtenerPrecioOro
+async function obtenerPrecioOro() {
+    try {
+        console.log('Intentando obtener el precio del oro...');
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Datos recibidos:', data);
+        if (!data.items || !data.items[0] || !data.items[0].xauPrice) {
+            throw new Error('Formato de datos inesperado');
+        }
+        const precio = data.items[0].xauPrice.toFixed(2);
+        console.log('Precio del oro obtenido:', precio);
+        return precio;
+    } catch (error) {
+        console.error('Error al obtener el precio del oro:', error);
+        return null;
+    }
+}
 
-spotInput.addEventListener('input', calcular);
-porcentajeInput.addEventListener('input', calcular);
-calcularButton.addEventListener('click', calcular);
+// La función actualizarPlaceholderSpot permanece sin cambios
+async function actualizarPlaceholderSpot() {
+    console.log('Actualizando placeholder del spot...');
+    const precioOro = await obtenerPrecioOro();
+    if (precioOro !== null) {
+        console.log('Actualizando placeholder con precio:', precioOro);
+        spotInput.placeholder = `Valor del spot a confirmar (${precioOro})`;
+    } else {
+        console.log('No se pudo obtener el precio, usando placeholder por defecto');
+        spotInput.placeholder = 'Valor del spot a confirmar';
+    }
+}
+
+function inicializarEventListeners() {
+    if (itemSelect) {
+        itemSelect.addEventListener('change', () => {
+            actualizarImagen();
+            calcular();
+        });
+    }
+
+    if (spotInput) {
+        spotInput.addEventListener('input', calcular);
+    }
+
+    if (porcentajeInput) {
+        porcentajeInput.addEventListener('input', calcular);
+    }
+
+    if (calcularButton) {
+        calcularButton.addEventListener('click', calcular);
+    }
+}
+
+function inicializarSelect() {
+    if (itemSelect) {
+        const sortedItems = Object.keys(itemsData).sort((a, b) => 
+            a.localeCompare(b, undefined, {sensitivity: 'base'})
+        );
+        
+        sortedItems.forEach(key => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            itemSelect.appendChild(option);
+        });
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Llenar el select con las opciones
-    const sortedItems = Object.keys(itemsData).sort((a, b) => 
-        a.localeCompare(b, undefined, {sensitivity: 'base'})
-    );
+    console.log('DOM completamente cargado');
     
-    sortedItems.forEach(key => {
-        const option = document.createElement('option');
-        option.value = key;
-        option.textContent = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-        itemSelect.appendChild(option);
-    });
+    inicializarSelect();
+    inicializarEventListeners();
+    
+    if (imagenItem) {
+        ocultarImagenYDatos();
+    }
 
-    // Ocultar la imagen y datos al cargar la página
-    ocultarImagenYDatos();
+    actualizarPlaceholderSpot().catch(error => {
+        console.error('Error al actualizar el placeholder:', error);
+    });
 });
