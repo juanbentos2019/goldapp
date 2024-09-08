@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,9 +9,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Calculadora de cotización de Oro</h1>
+        <h1>Calculadora de cotiz. de Oro</h1>
         <div class="form-group">
-            <label for="item">Selecciona el item:</label>
+            <label for="item">Selecciona el ítem:</label>
             <select id="item">
                 <option value="">Seleccione la moneda</option>
                 <option value="alemania_10_marcos">Alemania 10 Marcos de Oro</option>
@@ -61,41 +62,44 @@
                 <option value="suiza_20_francos">Suiza 20 Francos de Oro</option>
             </select>
         </div>
-        <div id="imagen-item" class="imagen-item" style="display: none;">
+        <div id="imagen-item" class="imagen-item">
             <div class="imagen-container">
-                <img id="imagen-moneda-actual" src="" alt="Moneda actual">
-                <img id="imagen-moneda-nueva" src="" alt="Moneda nueva">
+                <img id="imagen-moneda" src="" alt="Moneda de oro" />
             </div>
             <div class="datos-item">
                 <p>Peso en oro: <span id="peso-oro"></span></p>
                 <p>Peso bruto: <span id="peso-bruto"></span></p>
                 <p>Peso en onzas: <span id="peso-onzas"></span></p>
+                <p>Diámetro: <span id="diametro"></span></p>
             </div>
         </div>
-
         <div class="form-group">
             <label for="spot">Spot(onza):</label>
-            <input type="number" placeholder="Ingrese el valor de la Onza" id="spot" step="0.01">
+            <input type="number" id="spot" placeholder="Valor del spot a confirmar">
         </div>
-
         <div class="form-group">
             <label for="porcentaje">Porcentaje:</label>
-            <input type="number" placeholder="Ingrese el porcentaje de ganancia a aplicar" id="porcentaje" step="0.01">
+            <input type="number" id="porcentaje">
         </div>
-
-        <!--button id="calcular">Calcular</button-->
-
         <div class="results">
             <div class="compra">
-                <h2>Compra</h2><p>U$S</p>
-                <p id="valor_compra">0.00</p>
+                <h2>Compra</h2>
+                <p>U$S <span id="valor_compra" class="valor">0.00</span></p>
             </div>
             <div class="venta">
-                <h2>Venta</h2><p>U$S</p>
-                <p id="valor_venta">0.00</p>
+                <h2>Venta</h2>
+                <p>U$S <span id="valor_venta" class="valor">0.00</span></p>
             </div>
         </div>
     </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="cerrar">&times;</span>
+            <img id="modal-imagen" src="" alt="Moneda de oro ampliada">
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
