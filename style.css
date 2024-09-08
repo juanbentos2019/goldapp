@@ -20,6 +20,30 @@ body {
     width: 100%;
 }
 
+select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #a8d5ba;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f0f9f4;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23a8d5ba' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 50%;
+}
+
+select:focus {
+    outline: none;
+    border-color: #7fc6a4;
+    box-shadow: 0 0 0 3px rgba(168, 213, 186, 0.3);
+}
+
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
@@ -120,15 +144,16 @@ input, select {
 }
 
 .modal-content {
-    position: relative;
-    background-color: #fefefe;
+    background-color: #ffffff;
     margin: auto;
-    padding: 0;
+    padding: 20px;
+    border: 2px solid #a8d5ba;
+    border-radius: 15px;
     width: 60%;
     max-width: 700px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 20px rgba(168, 213, 186, 0.2);
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
 }
 
 @keyframes animatetop {
@@ -137,18 +162,16 @@ input, select {
 }
 
 .cerrar {
-    color: white;
+    color: #7fc6a4;
     float: right;
     font-size: 28px;
     font-weight: bold;
-    position: absolute;
-    right: 10px;
-    top: 0;
+    transition: color 0.3s ease;
 }
 
 .cerrar:hover,
 .cerrar:focus {
-    color: #000;
+    color: #2c3e50;
     text-decoration: none;
     cursor: pointer;
 }
@@ -178,4 +201,19 @@ input, select {
     .modal-content {
         width: 90%;
     }
+}
+
+button {
+    background-color: #a8d5ba;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #7fc6a4;
 }

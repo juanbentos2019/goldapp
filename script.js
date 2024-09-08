@@ -1,3 +1,7 @@
+function log(message) {
+    console.log(`[DEBUG] ${message}`);
+}
+
 const itemSelect = document.getElementById('item');
 const spotInput = document.getElementById('spot');
 const porcentajeInput = document.getElementById('porcentaje');
@@ -294,6 +298,8 @@ const itemsData = {
     }
 };
 
+log('itemsData cargado correctamente');
+
 function ocultarImagenYDatos() {
     imagenItem.classList.remove('visible');
     pesoOroElement.textContent = '';
@@ -395,26 +401,67 @@ function inicializarEventListeners() {
             cerrarModalFunc();
         }
     });
+    log('Event listeners inicializados');
+}
+
+function formatearNombreMoneda(key) {
+    // Reemplazamos los guiones bajos por espacios
+    let nombre = key.replace(/_/g, ' ');
+    
+    // Casos especiales
+    nombre = nombre
+        .replace(/(\d+) (\d+)/, '$1/$2')  // Reemplaza "10 20" por "10/20"
+        .replace(/(\d+) (\d+) oz/, '$1/$2 oz')  // Maneja casos como "1 10 oz"
+        .replace(/(\d+) (\d+) pesos/, '$1/$2 pesos')  // Maneja casos como "2 50 pesos"
+        .replace(/(\d+) (\d+) soles/, '$1/$2 soles');  // Maneja casos como "5 10 soles"
+
+    return nombre;
 }
 
 function inicializarSelect() {
-    const sortedItems = Object.keys(itemsData).sort((a, b) => 
-        a.localeCompare(b, undefined, {sensitivity: 'base'})
-    );
+    log('Iniciando inicializarSelect');
+    if (!itemSelect) {
+        log('ERROR: itemSelect es null');
+        return;
+    }
     
-    sortedItems.forEach(key => {
+    // Vaciar el select primero
+    itemSelect.innerHTML = '<option value="">Seleccione la moneda</option>';
+    log('Select vaciado y opción por defecto añadida');
+
+    const sortedItems = Object.entries(itemsData).sort((a, b) => 
+        a[0].localeCompare(b[0], undefined, {sensitivity: 'base'})
+    );
+    log(`Número de items ordenados: ${sortedItems.length}`);
+    
+    sortedItems.forEach(([key, value]) => {
         const option = document.createElement('option');
         option.value = key;
-        option.textContent = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        option.textContent = formatearNombreMoneda(key);
         itemSelect.appendChild(option);
     });
+    log('Opciones añadidas al select');
+    log(`Número final de opciones en el select: ${itemSelect.options.length}`);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    log('DOMContentLoaded event fired');
     inicializarSelect();
     inicializarEventListeners();
     ocultarImagenYDatos();
     actualizarPlaceholderSpot().catch(error => {
         console.error('Error al actualizar el placeholder:', error);
     });
+    log('Inicialización completa');
 });
+
+// Comprobación adicional
+window.onload = function() {
+    log('Window onload event fired');
+    if (itemSelect.options.length <= 1) {
+        log('ERROR: No se han cargado las opciones del select');
+        console.error('Las opciones no se han cargado correctamente en el select');
+    } else {
+        log(`Número de opciones cargadas: ${itemSelect.options.length}`);
+    }
+};

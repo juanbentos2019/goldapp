@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,61 +9,18 @@
 <body>
     <div class="container">
         <h1>Calculadora de cotiz. de Oro</h1>
+        
         <div class="form-group">
             <label for="item">Selecciona el ítem:</label>
             <select id="item">
                 <option value="">Seleccione la moneda</option>
-                <option value="alemania_10_marcos">Alemania 10 Marcos de Oro</option>
-                <option value="alemania_20_marcos">Alemania 20 Marcos de Oro</option>
-                <option value="austria_1_ducado">Austria 1 Ducado de Oro</option>
-                <option value="austria_4_ducados_1612_1830">Austria 4 Ducados de Oro 1612-1830</option>
-                <option value="austria_4_ducados_1830">Austria 4 Ducados de Oro 1830 en adelante</option>
-                <option value="austria_100_coronas">Austria 100 Coronas de Oro</option>
-                <option value="austria_20_coronas">Austria 20 Coronas de Oro</option>
-                <option value="austria_100_chelines">Austria 100 Chelines de Oro</option>
-                <option value="belgica_20_francos">Bélgica 20 Francos de Oro</option>
-                <option value="canada_maple_leaf_1_10_oz">Canadá Maple Leaf 1/10 oz Oro</option>
-                <option value="canada_maple_leaf_1_4_oz">Canadá Maple Leaf 1/4 oz Oro</option>
-                <option value="canada_maple_leaf_1_2_oz">Canadá Maple Leaf 1/2 oz Oro</option>
-                <option value="canada_maple_leaf_1_oz">Canadá Maple Leaf 1 oz Oro</option>
-                <option value="chile_50_pesos">Chile 50 Pesos de Oro</option>
-                <option value="chile_100_pesos">Chile 100 Pesos de Oro</option>
-                <option value="china_panda_1_oz_pre_2016">China Panda 1 oz pre 2016</option>
-                <option value="china_panda_1_oz_desde_2016">China Panda 1 oz desde 2016</option>
-                <option value="eeuu_5_usd">EE.UU. 5.00 USD de Oro</option>
-                <option value="eeuu_10_usd">EE.UU. 10 USD de Oro</option>
-                <option value="eeuu_20_usd">EE.UU. 20 USD de Oro</option>
-                <option value="eeuu_aguila_1_10_oz">EE.UU. Águila de 1/10 oz Oro</option>
-                <option value="eeuu_aguila_1_4_oz">EE.UU. Águila de 1/4 oz Oro</option>
-                <option value="eeuu_aguila_1_2_oz">EE.UU. Águila de 1/2 oz Oro</option>
-                <option value="eeuu_aguila_1_oz">EE.UU. Águila de 1 oz Oro</option>
-                <option value="francia_10_francos">Francia 10 Francos de Oro</option>
-                <option value="francia_20_francos">Francia 20 Francos de Oro</option>
-                <option value="inglaterra_1_2_libra">Inglaterra 1/2 Libra de Oro</option>
-                <option value="libra_oro">Inglaterra 1 Libra de Oro</option>
-                <option value="krugerrand">Krugerrand</option>
-                <option value="mejico_2_pesos">México 2 Pesos de Oro</option>
-                <option value="mejico_2_50_pesos">México 2.50 Pesos de Oro</option>
-                <option value="mejico_5_pesos">México 5 Pesos de Oro</option>
-                <option value="mejico_10_pesos">México 10 Pesos de Oro</option>
-                <option value="mejico_20_pesos">México 20 Pesos de Oro</option>
-                <option value="mejico_1_oz">México 1 oz de Oro</option>
-                <option value="mexicana_50">México 50 Pesos de Oro</option>
-                <option value="peru_5_soles">Perú 5 Soles de Oro</option>
-                <option value="peru_10_soles">Perú 10 Soles de Oro</option>
-                <option value="peru_20_soles">Perú 20 Soles de Oro</option>
-                <option value="peru_50_soles">Perú 50 Soles de Oro</option>
-                <option value="peru_100_soles">Perú 100 Soles de Oro</option>
-                <option value="sudafrica_kruger_1_10_oz">Sudáfrica Kruger 1/10 oz Oro</option>
-                <option value="sudafrica_kruger_1_4_oz">Sudáfrica Kruger 1/4 oz Oro</option>
-                <option value="sudafrica_kruger_1_2_oz">Sudáfrica Kruger 1/2 oz Oro</option>
-                <option value="suiza_10_francos">Suiza 10 Francos de Oro</option>
-                <option value="suiza_20_francos">Suiza 20 Francos de Oro</option>
+                <!-- Las opciones se cargarán dinámicamente desde JavaScript -->
             </select>
         </div>
+
         <div id="imagen-item" class="imagen-item">
             <div class="imagen-container">
-                <img id="imagen-moneda" src="" alt="Moneda de oro" />
+                <img id="imagen-moneda" src="" alt="Moneda de oro">
             </div>
             <div class="datos-item">
                 <p>Peso en oro: <span id="peso-oro"></span></p>
@@ -73,22 +29,25 @@
                 <p>Diámetro: <span id="diametro"></span></p>
             </div>
         </div>
+
         <div class="form-group">
             <label for="spot">Spot(onza):</label>
-            <input type="number" id="spot" placeholder="Valor del spot a confirmar">
+            <input type="number" id="spot" step="0.01" placeholder="Valor del spot a confirmar">
         </div>
+
         <div class="form-group">
             <label for="porcentaje">Porcentaje:</label>
-            <input type="number" id="porcentaje">
+            <input type="number" id="porcentaje" step="0.01" placeholder="Ingrese el porcentaje">
         </div>
+
         <div class="results">
             <div class="compra">
                 <h2>Compra</h2>
-                <p>U$S <span id="valor_compra" class="valor">0.00</span></p>
+                <div id="valor_compra" class="valor">U$S 0.00</div>
             </div>
             <div class="venta">
                 <h2>Venta</h2>
-                <p>U$S <span id="valor_venta" class="valor">0.00</span></p>
+                <div id="valor_venta" class="valor">U$S 0.00</div>
             </div>
         </div>
     </div>
