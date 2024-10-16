@@ -238,33 +238,33 @@ const itemsData = {
     },
     peru_5_soles: {
         imagen: 'ruta/a/imagen_peru_5_soles.jpg',
-        pesoOro: '7.37 g',
-        pesoBruto: '8.19 g',
-        diametro: '21 mm'
+        pesoOro: '2.106 g',
+        pesoBruto: '2.34 g',
+        diametro: '18 mm'
     },
     peru_10_soles: {
         imagen: 'ruta/a/imagen_peru_10_soles.jpg',
-        pesoOro: '14.74 g',
-        pesoBruto: '16.38 g',
-        diametro: '27 mm'
+        pesoOro: '4.2123 g',
+        pesoBruto: '4.6807 g',
+        diametro: '22 mm'
     },
     peru_20_soles: {
         imagen: 'ruta/a/imagen_peru_20_soles.jpg',
-        pesoOro: '29.48 g',
-        pesoBruto: '32.76 g',
-        diametro: '34 mm'
+        pesoOro: '8.4246 g',
+        pesoBruto: '9.3614 g',
+        diametro: '23 mm'
     },
     peru_50_soles: {
         imagen: 'ruta/a/imagen_peru_50_soles.jpg',
-        pesoOro: '36.85 g',
-        pesoBruto: '40.94 g',
-        diametro: '36 mm'
+        pesoOro: '21.06 g',
+        pesoBruto: '23.404 g',
+        diametro: '30 mm'
     },
     peru_100_soles: {
         imagen: 'ruta/a/imagen_peru_100_soles.jpg',
-        pesoOro: '47.00 g',
-        pesoBruto: '52.22 g',
-        diametro: '37 mm'
+        pesoOro: '42.12 g',
+        pesoBruto: '46.80 g',
+        diametro: '36 mm'
     },
     sudafrica_kruger_1_10_oz: {
         imagen: 'ruta/a/imagen_sudafrica_kruger_1_10_oz.jpg',
