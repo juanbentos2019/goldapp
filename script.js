@@ -254,7 +254,7 @@ const itemsData = {
         pesoBruto: '32.2581 g',
         diametro: '34 mm'
     },
-    peru_20_soles_1950_1969: {
+    peru_20_soles_1950: {
         imagen: 'ruta/a/imagen_peru_20_soles1.jpg',
         pesoOro: '8.4246 g',
         pesoBruto: '9.3614 g',
