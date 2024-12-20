@@ -249,7 +249,7 @@ const itemsData = {
         diametro: '22 mm'
     },
     peru_20_soles: {
-        imagen: 'ruta/a/imagen_peru_20_soles.jpg',
+        imagen: 'ruta/a/imagen_peru_20_soles1.jpg',
         pesoOro: '8.4246 g',
         pesoBruto: '9.3614 g',
         diametro: '23 mm'
