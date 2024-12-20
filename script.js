@@ -248,7 +248,13 @@ const itemsData = {
         pesoBruto: '4.6807 g',
         diametro: '22 mm'
     },
-    peru_20_soles: {
+    "Peru 20 soles 1863": {
+        imagen: 'ruta/a/imagen_peru_20_soles1863.jpg',
+        pesoOro: '29.0323 g',
+        pesoBruto: '32.2581 g',
+        diametro: '34 mm'
+    },
+    peru_20_soles 1950-1969: {
         imagen: 'ruta/a/imagen_peru_20_soles1.jpg',
         pesoOro: '8.4246 g',
         pesoBruto: '9.3614 g',
